@@ -15,7 +15,7 @@ import { MeService } from './me.service';
 import { CreateMeDto } from './dto/create-me.dto';
 import { UpdateMeDto } from './dto/update-me.dto';
 
-@Controller('me')
+@Controller('api/me')
 export class MeController {
   constructor(private readonly meService: MeService) {}
 
@@ -30,7 +30,7 @@ export class MeController {
     if (search) {
       return this.meService.search(search);
     }
-    return this.meService.findAll();
+    return this.meService.findOne(1);
   }
 
   @Get(':id')
