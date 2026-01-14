@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     git branch: 'main', 
-                        url: 'https://github.com/hieptvh18/profile-nestjs-api.git',
+                        url: 'https://github.com/hieptvh18/profile-nestJs.git',
                         credentialsId: '32da44d0-5329-4b31-9570-c553f275ab7d'
                 }
             }
