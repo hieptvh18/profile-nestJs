@@ -28,7 +28,7 @@ pipeline {
                 script {
                     git branch: 'main', 
                         url: 'https://github.com/hieptvh18/profile-nestJs.git',
-                        credentialsId: '32da44d0-5329-4b31-9570-c553f275ab7d'
+                        credentialsId: 'cbb05b2d-c71c-4a5a-8d82-829021e61ba3'
                 }
             }
         }
@@ -60,7 +60,7 @@ pipeline {
         stage('Update GitOps Repo') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: '32da44d0-5329-4b31-9570-c553f275ab7d', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'cbb05b2d-c71c-4a5a-8d82-829021e61ba3', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                         sh '''
                         rm -rf assignment-devops-k8s
                         git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/hieptvh18/assignment-devops-k8s.git
