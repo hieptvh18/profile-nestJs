@@ -28,7 +28,7 @@ pipeline {
                 script {
                     git branch: 'main', 
                         url: 'https://github.com/hieptvh18/profile-nestJs.git',
-                        credentialsId: 'cbb05b2d-c71c-4a5a-8d82-829021e61ba3'
+                        credentialsId: 'github_pat'
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'af43eb35-2853-4a53-9eec-e0dd0c028d5f', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub_pat', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                         sh """
                             echo \${DOCKERHUB_PASSWORD} | docker login -u \${DOCKERHUB_USERNAME} --password-stdin
                             docker push ${DOCKERHUB_USER}/${IMAGE_NAME}:${BUILD_NUMBER}
@@ -60,7 +60,7 @@ pipeline {
         stage('Update GitOps Repo') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'cbb05b2d-c71c-4a5a-8d82-829021e61ba3', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'github_pat', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                         sh '''
                         rm -rf assignment-devops-k8s
                         git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/hieptvh18/assignment-devops-k8s.git
